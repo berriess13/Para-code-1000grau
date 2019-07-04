@@ -264,6 +264,10 @@ CREATE TABLE `player` (
   `windowflashing` smallint(4) DEFAULT '1',
   `ghost_anonsay` tinyint(1) NOT NULL DEFAULT '0',
   `exp` mediumtext,
+  `clientfps` smallint(4) DEFAULT '0',
+  `atklog` smallint(4) DEFAULT '0',
+  `fuid` bigint(20) NULL DEFAULT NULL,
+  `fupdate` smallint(4) NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ckey` (`ckey`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32446 DEFAULT CHARSET=latin1;
@@ -358,12 +362,12 @@ DROP TABLE IF EXISTS `privacy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `privacy` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `datetime` datetime NOT NULL,
   `ckey` varchar(32) NOT NULL,
-  `option` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=latin1;
+  `datetime` datetime NOT NULL,
+  `consent` bit(1) NOT NULL,
+  PRIMARY KEY (`ckey`),
+  UNIQUE KEY `ckey_UNIQUE` (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -517,5 +521,45 @@ CREATE TABLE `memo` (
   `last_editor` varchar(32),
   `edits` text,
   PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ipintel`
+--
+DROP TABLE IF EXISTS `ipintel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE  `ipintel` (
+  `ip` int UNSIGNED NOT NULL,
+  `date` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+  `intel` real NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `vpn_whitelist`
+--
+DROP TABLE IF EXISTS `vpn_whitelist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vpn_whitelist` (
+  `ckey` varchar(32) NOT NULL,
+  `reason` text,
+  PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `oauth_tokens`
+--
+DROP TABLE IF EXISTS `oauth_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oauth_tokens` (
+  `ckey` varchar(32) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  PRIMARY KEY (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
