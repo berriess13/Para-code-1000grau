@@ -99,7 +99,7 @@
 	build_path = /obj/item/reagent_containers/glass/bottle/mutagen
 	category = list("initial","Botany Chemicals")
 
-/datum/design/mutagen
+/datum/design/queen_bee
 	name = "Queen Bee"
 	id = "queen_bee"
 	build_type = BIOGENERATOR
