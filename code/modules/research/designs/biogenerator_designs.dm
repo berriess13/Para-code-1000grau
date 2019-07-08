@@ -99,6 +99,14 @@
 	build_path = /obj/item/reagent_containers/glass/bottle/mutagen
 	category = list("initial","Botany Chemicals")
 
+/datum/design/mutagen
+	name = "Queen Bee"
+	id = "queen_bee"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 800)
+	build_path = /mob/living/simple_animal/hostile/poison/bees/queen
+	category = list("initial","Botany Chemicals")
+
 /datum/design/pest_spray
 	name = "Pest Killer"
 	id = "pest_spray"
